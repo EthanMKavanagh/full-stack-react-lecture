@@ -1,6 +1,5 @@
-import Axios from 'axios';
 import React, { Component } from 'react';
-import axios from 'axios';
+
 
 class Song extends Component {
 
@@ -12,17 +11,6 @@ class Song extends Component {
         console.log('Hiding song', this.props.track);
         this.setState({
             isHidden: !this.state.isHidden
-        });
-    }
-
-    delete = () => {
-        axios({
-            method: 'DELETE',
-            url: `/songs/${this.props.id}`
-        }).then(response => {
-            console.log('Deleted');
-        }).catch(err => {
-            console.error('Delete song failed', err);
         });
     }
 
@@ -47,7 +35,7 @@ class Song extends Component {
                             `Hide Song`
                     }
                 </button>
-                <button onClick={this.delete}>Delete</button>
+                <button onClick={() => this.props.onDelete(this.props.id)}>Delete</button>
             </li>
         );
 

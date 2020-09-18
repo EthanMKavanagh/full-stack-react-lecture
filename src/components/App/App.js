@@ -29,6 +29,15 @@ class App extends Component {
     });
   }
 
+  onDelete = (songId) => {
+    axios.delete(`/songs/${songId}`).then(response => {
+        console.log('Deleted');
+        this.getSongs();
+    }).catch(err => {
+        console.error('Delete song failed', err);
+    });
+  }
+
   render() {
     console.log('rendering...');
     return (
@@ -46,6 +55,7 @@ class App extends Component {
               id={song.id}
               track={song.track}
               artist={song.artist}
+              onDelete={this.onDelete}
             />
           )}
         </ul>
