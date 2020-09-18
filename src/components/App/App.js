@@ -42,6 +42,7 @@ class App extends Component {
         <ul>
           {this.state.songs.map(song =>
             <Song
+              key={song.id}
               id={song.id}
               track={song.track}
               artist={song.artist}
