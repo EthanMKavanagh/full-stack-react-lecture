@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+import Song from '../Song/Song';
 
 class App extends Component {
 
@@ -8,8 +9,12 @@ class App extends Component {
     songs: []
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     console.log('App is ready');
+    this.getSongs();
+  }
+
+  getSongs = () => {
     axios({
       method: 'GET',
       url: '/songs'
@@ -36,7 +41,11 @@ class App extends Component {
 
         <ul>
           {this.state.songs.map(song =>
-            <li key={song.id}>{song.track} by {song.artist}</li>
+            <Song
+              id={song.id}
+              track={song.track}
+              artist={song.artist}
+            />
           )}
         </ul>
 
