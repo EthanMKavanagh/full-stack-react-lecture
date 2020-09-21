@@ -50,8 +50,8 @@ class App extends Component {
             <nav>
               <main>
                 <div>
-                  <p><Link to='/'>Home</Link></p>
-                  <p><Link to='/about-the-author'>About The Author</Link></p>
+                  <span className="navigationBar"><Link to='/'>Home</Link></span>
+                  <span className="navigationBar"><Link to='/about-the-author'>About The Author</Link></span>
                 </div>
               </main>
             </nav>
