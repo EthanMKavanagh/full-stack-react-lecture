@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import Song from '../Song/Song';
+import AboutTheAuthor from '../AboutTheAuthor/AboutTheAuthor';
+import {Route, Link, HashRouter as Router} from 'react-router-dom';
 
 class App extends Component {
 
@@ -41,29 +43,44 @@ class App extends Component {
   render() {
     console.log('rendering...');
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Songs!</h1>
-        </header>
-        <br/>
-        <p>Songs go here</p>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">Songs!</h1>
+            <nav>
+              <main>
+                <div>
+                  <p><Link to='/'>Home</Link></p>
+                  <p><Link to='/about-the-author'>About The Author</Link></p>
+                </div>
+              </main>
+            </nav>
+          </header>
+          <br/>
 
-        <ul>
-          {this.state.songs.map(song =>
-            <Song
-              key={song.id}
-              id={song.id}
-              track={song.track}
-              artist={song.artist}
-              onDelete={this.onDelete}
-            />
-          )}
-        </ul>
+          <Route path='/about-the-author' exact>
+          <AboutTheAuthor />
+          </Route>
 
-        {/*<pre>
-          {JSON.stringify(this.state.songs, null, 2)}
-        </pre>*/}
-      </div>
+          <Route path='/' exact>
+            <ul>
+              {this.state.songs.map(song =>
+                <Song
+                  key={song.id}
+                  id={song.id}
+                  track={song.track}
+                  artist={song.artist}
+                  onDelete={this.onDelete}
+                />
+              )}
+            </ul>
+          </Route>
+
+          {/*<pre>
+            {JSON.stringify(this.state.songs, null, 2)}
+          </pre>*/}
+        </div>
+      </Router>
     );
   }
 }
